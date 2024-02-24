@@ -4,3 +4,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8085/eureka/
+
+hu:
+  cubix:
+    tokenlib:
+      keypaths:
+        private: C:\Users\Patrik\private.pem
+        public: C:\Users\Patrik\public.pem
