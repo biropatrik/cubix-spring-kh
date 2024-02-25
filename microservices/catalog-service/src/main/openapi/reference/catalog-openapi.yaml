@@ -1,0 +1,147 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: 'http://localhost:8080'
+    description: Generated server url
+paths:
+  /api/categories:
+    get:
+      summary: Get all categories
+      operationId: findAllCategories
+      tags:
+        - category-controller
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryDto'
+      description: Retrieve categories.
+    post:
+      summary: Create new category
+      operationId: addCategory
+      tags:
+        - category-controller
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDto'
+      description: Endpoint for add new category.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryDto'
+        required: true
+  /api/products:
+    get:
+      summary: Get all products
+      operationId: findAllProducts
+      tags:
+        - product-controller
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
+      description: Retrieve products.
+    post:
+      summary: Create new product
+      operationId: addProduct
+      tags:
+        - product-controller
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+      description: Endpoint for add new product.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+        description: ''
+  '/api/products/{id}':
+    put:
+      summary: Update product by id
+      tags:
+        - product-controller
+      operationId: update
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+    delete:
+      summary: Delete product by id
+      tags:
+        - product-controller
+      operationId: deleteById
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+components:
+  schemas:
+    CategoryDto:
+      title: CategoryDto
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 3
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductDto'
+    ProductDto:
+      title: ProductDto
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 3
+        price:
+          type: integer
+          minimum: 0
+        category:
+          $ref: '#/components/schemas/CategoryDto'
