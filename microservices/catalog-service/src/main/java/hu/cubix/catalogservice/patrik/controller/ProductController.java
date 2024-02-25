@@ -6,7 +6,6 @@ import hu.cubix.catalogservice.patrik.exception.DifferentProductIdsException;
 import hu.cubix.catalogservice.patrik.mapper.ProductMapper;
 import hu.cubix.catalogservice.patrik.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

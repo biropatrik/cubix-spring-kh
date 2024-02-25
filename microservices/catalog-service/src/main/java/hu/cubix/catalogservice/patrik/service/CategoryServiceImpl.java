@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public List<Category> findAll() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAllWithProducts();
     }
 
     @Override

@@ -6,7 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
+//@Audited
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
