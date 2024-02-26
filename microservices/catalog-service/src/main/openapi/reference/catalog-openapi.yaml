@@ -117,6 +117,43 @@ paths:
           schema:
             type: integer
             format: int32
+  /api/products/search:
+    get:
+      tags:
+        - product-controller
+      operationId: search
+      parameters:
+        - name: fromPrice
+          in: query
+          schema:
+            type: integer
+        - name: toPrice
+          in: query
+          schema:
+            type: integer
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: size
+          in: query
+          schema:
+            type: integer
+        - name: sort
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
 components:
   schemas:
     CategoryDto:

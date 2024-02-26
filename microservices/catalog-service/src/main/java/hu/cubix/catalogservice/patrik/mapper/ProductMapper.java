@@ -24,4 +24,6 @@ public interface ProductMapper {
 
     @InheritInverseConfiguration
     public Category dtoToCategory(CategoryDto categoryDto);
+
+    List<ProductDto> productsToDtos(Iterable<Product> products);
 }
