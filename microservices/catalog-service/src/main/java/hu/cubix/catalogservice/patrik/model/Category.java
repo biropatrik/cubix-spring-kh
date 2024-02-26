@@ -9,7 +9,7 @@ import org.hibernate.envers.Audited;
 
 import java.util.Set;
 
-//@Audited
+@Audited
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,10 +19,7 @@ import java.util.Set;
 public class Category {
 
     @Id
-    @GeneratedValue
     @EqualsAndHashCode.Include()
-    private long id;
-
     private String name;
 
     @OneToMany(mappedBy = "category")

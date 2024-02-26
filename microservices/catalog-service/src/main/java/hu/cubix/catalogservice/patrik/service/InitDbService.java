@@ -5,6 +5,7 @@ import hu.cubix.catalogservice.patrik.model.Product;
 import hu.cubix.catalogservice.patrik.repository.CategoryRepository;
 import hu.cubix.catalogservice.patrik.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,11 +15,18 @@ public class InitDbService {
 
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
+    private final JdbcTemplate jdbcTemplate;
 
     @Transactional
     public void deleteDb() {
         productRepository.deleteAllInBatch();
         categoryRepository.deleteAllInBatch();
+    }
+
+    @Transactional
+    public void deleteAudTables() {
+        jdbcTemplate.update("DELETE FROM category_aud");
+        jdbcTemplate.update("DELETE FROM product_aud");
     }
 
     @Transactional

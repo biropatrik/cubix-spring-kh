@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.*;
 import org.hibernate.envers.Audited;
 
-//@Audited
+@Audited
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
