@@ -2,6 +2,7 @@ package hu.cubix.catalogservice.patrik.controller;
 
 import com.querydsl.core.types.Predicate;
 import hu.cubix.catalogservice.patrik.api.ProductControllerApi;
+import hu.cubix.catalogservice.patrik.api.model.HistoryDataProductDto;
 import hu.cubix.catalogservice.patrik.api.model.ProductDto;
 import hu.cubix.catalogservice.patrik.exception.DifferentProductIdsException;
 import hu.cubix.catalogservice.patrik.mapper.ProductMapper;
@@ -69,6 +70,12 @@ public class ProductController implements ProductControllerApi {
     public void configPageable(@SortDefault("id") Pageable pageable) {}
 
     public void configurePredicate(@QuerydslPredicate(root = Product.class) Predicate predicate) {}
+
+    @Override
+    public ResponseEntity<List<HistoryDataProductDto>> getHistory(Integer id) {
+        return ResponseEntity.ok(
+                productMapper.productsHistoryToHistoryDataProductDtos(productService.getHistoryById(id)));
+    }
 
     @Override
     public ResponseEntity<Void> deleteById(Integer id) {

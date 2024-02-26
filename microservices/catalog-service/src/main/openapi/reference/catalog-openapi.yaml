@@ -154,6 +154,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProductDto'
+  '/api/products/history/{id}':
+    get:
+      tags:
+        - product-controller
+      operationId: getHistory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoryDataProductDto'
 components:
   schemas:
     CategoryDto:
@@ -182,3 +203,20 @@ components:
           minimum: 0
         category:
           $ref: '#/components/schemas/CategoryDto'
+    HistoryDataProductDto:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProductDto'
+        revType:
+          type: string
+          enum:
+            - ADD
+            - MOD
+            - DEL
+        revision:
+          type: integer
+          format: int32
+        date:
+          type: string
+          format: date-time

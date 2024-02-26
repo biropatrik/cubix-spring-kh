@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
+@EnableCaching
 @RequiredArgsConstructor
 @SpringBootApplication(scanBasePackageClasses = {JwtService.class, CatalogServiceApplication.class})
 public class CatalogServiceApplication implements CommandLineRunner {

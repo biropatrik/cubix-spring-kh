@@ -1,6 +1,7 @@
 package hu.cubix.catalogservice.patrik.service;
 
 import com.querydsl.core.types.Predicate;
+import hu.cubix.catalogservice.patrik.model.HistoryData;
 import hu.cubix.catalogservice.patrik.model.Product;
 import org.springframework.data.domain.Pageable;
 
@@ -17,4 +18,6 @@ public interface ProductService {
     public void deleteById(long id);
 
     public Iterable<Product> search(Predicate predicate, Pageable pageable, Integer fromPrice, Integer toPrice);
+
+    public List<HistoryData<Product>> getHistoryById(int id);
 }
