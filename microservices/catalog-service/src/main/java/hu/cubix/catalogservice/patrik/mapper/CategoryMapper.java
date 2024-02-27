@@ -1,9 +1,9 @@
 package hu.cubix.catalogservice.patrik.mapper;
 
-import hu.cubix.catalogservice.patrik.api.model.CategoryDto;
-import hu.cubix.catalogservice.patrik.api.model.ProductDto;
 import hu.cubix.catalogservice.patrik.model.Category;
+import hu.cubix.catalogservice.patrik.model.CategoryDto;
 import hu.cubix.catalogservice.patrik.model.Product;
+import hu.cubix.catalogservice.patrik.model.ProductDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

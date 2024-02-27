@@ -2,8 +2,8 @@ package hu.cubix.catalogservice.patrik.controller;
 
 import com.querydsl.core.types.Predicate;
 import hu.cubix.catalogservice.patrik.api.ProductControllerApi;
-import hu.cubix.catalogservice.patrik.api.model.HistoryDataProductDto;
-import hu.cubix.catalogservice.patrik.api.model.ProductDto;
+import hu.cubix.catalogservice.patrik.model.HistoryDataProductDto;
+import hu.cubix.catalogservice.patrik.model.ProductDto;
 import hu.cubix.catalogservice.patrik.exception.DifferentProductIdsException;
 import hu.cubix.catalogservice.patrik.mapper.ProductMapper;
 import hu.cubix.catalogservice.patrik.model.Product;

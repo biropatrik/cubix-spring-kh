@@ -20,8 +20,6 @@
 		<io.swagger.version>1.6.4</io.swagger.version>
 		<org.openapitools.version>0.2.2</org.openapitools.version>
 		<org.springdoc.version>2.1.0</org.springdoc.version>
-		<!-- automatically run annotation processors within the incremental compilation -->
-		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -104,12 +102,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>hu.cubix.spring.patrik</groupId>
-			<artifactId>token-lib</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
@@ -121,6 +113,17 @@
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-spring6-embedded</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>hu.cubix.spring.patrik</groupId>
+			<artifactId>token-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>hu.cubix.spring.patrik</groupId>
+			<artifactId>catalog-service-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

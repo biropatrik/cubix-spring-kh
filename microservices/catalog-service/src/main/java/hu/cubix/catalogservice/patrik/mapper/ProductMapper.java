@@ -1,8 +1,8 @@
 package hu.cubix.catalogservice.patrik.mapper;
 
-import hu.cubix.catalogservice.patrik.api.model.CategoryDto;
-import hu.cubix.catalogservice.patrik.api.model.HistoryDataProductDto;
-import hu.cubix.catalogservice.patrik.api.model.ProductDto;
+import hu.cubix.catalogservice.patrik.model.CategoryDto;
+import hu.cubix.catalogservice.patrik.model.HistoryDataProductDto;
+import hu.cubix.catalogservice.patrik.model.ProductDto;
 import hu.cubix.catalogservice.patrik.model.Category;
 import hu.cubix.catalogservice.patrik.model.HistoryData;
 import hu.cubix.catalogservice.patrik.model.Product;
