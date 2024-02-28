@@ -6,7 +6,6 @@ import hu.cubix.orderservice.patrik.exception.OrderAlreadyAddedException;
 import hu.cubix.orderservice.patrik.exception.OrderNotFoundException;
 import hu.cubix.orderservice.patrik.model.Address;
 import hu.cubix.orderservice.patrik.model.OrderModel;
-import hu.cubix.orderservice.patrik.model.OrderedProduct;
 import hu.cubix.orderservice.patrik.model.Status;
 import hu.cubix.orderservice.patrik.repository.AddressRepository;
 import hu.cubix.orderservice.patrik.repository.OrderModelRepository;
@@ -17,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -82,7 +80,7 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(status);
 
         if (status.equals(Status.CONFIRMED)) {
-            System.out.println("ShipmentId: " + callXmlWs(order));
+            order.setShipmentId(callXmlWs(order));
         }
 
         return orderRepository.save(order);
@@ -117,5 +115,13 @@ public class OrderServiceImpl implements OrderService {
         AddShipment addShipment = new AddShipment();
         addShipment.setArg0(shipment);
         return shipperXmlWsImplPort.addShipment(addShipment);
+    }
+
+    @Override
+    @Transactional
+    public void setShipmentStatus(long shipmentId, boolean status) {
+        OrderModel order = orderRepository.findByShipmentId(shipmentId).get();
+        order.setStatus(status ? Status.DELIVERED : Status.SHIPMENT_FAILED);
+        System.out.println("Order shipping status added: " + order.getStatus());
     }
 }

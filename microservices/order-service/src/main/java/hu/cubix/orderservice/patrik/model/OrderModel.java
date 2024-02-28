@@ -19,6 +19,8 @@ public class OrderModel {
     @EqualsAndHashCode.Include()
     private long id;
 
+    private Long shipmentId;
+
     private String username;
 
     private Status status;

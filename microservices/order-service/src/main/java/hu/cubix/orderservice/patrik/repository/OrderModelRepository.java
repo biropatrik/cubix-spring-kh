@@ -17,4 +17,6 @@ public interface OrderModelRepository extends JpaRepository<OrderModel, Long> {
     @EntityGraph(attributePaths = {"address", "productWithInfos", "productWithInfos.product"})
     @Query("SELECT o FROM OrderModel o WHERE o.id = :id")
     Optional<OrderModel> findById(Long id);
+
+    Optional<OrderModel> findByShipmentId(Long id);
 }

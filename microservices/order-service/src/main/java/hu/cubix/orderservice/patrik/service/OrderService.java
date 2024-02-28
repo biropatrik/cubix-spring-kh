@@ -12,4 +12,6 @@ public interface OrderService {
     public List<OrderModel> findByUsername(String username);
 
     public OrderModel handleOrder(long id, Status status);
+
+    public void setShipmentStatus(long shipmentId, boolean status);
 }

@@ -5,12 +5,13 @@ import hu.cubix.orderservice.patrik.model.Status;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class OrderDto {
 
     private long id;
+
+    private Long shipmentId;
 
     private String username;
 
