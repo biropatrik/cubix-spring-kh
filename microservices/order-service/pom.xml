@@ -66,6 +66,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>hu.cubix.spring.patrik</groupId>
 			<artifactId>catalog-service-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -134,6 +140,24 @@
 							<version>${hibernate.version}</version>
 						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.sun.xml.ws</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>4.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>hu.cubix.shipperservice.patrik.wsclient</packageName>
+					<wsdlUrls>
+						<wsdlUrl>http://localhost:8089/services/shipper?wsdl</wsdlUrl>
+					</wsdlUrls>
 				</configuration>
 			</plugin>
 		</plugins>

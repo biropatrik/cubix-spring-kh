@@ -1,0 +1,24 @@
+package hu.cubix.shipperservice.patrik.model;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class Address {
+
+    @Id
+    @GeneratedValue
+    @EqualsAndHashCode.Include()
+    private long id;
+
+    private String country;
+    private String city;
+    private String street;
+    private String zip;
+}

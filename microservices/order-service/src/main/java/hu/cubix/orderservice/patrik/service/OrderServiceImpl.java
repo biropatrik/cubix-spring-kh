@@ -12,10 +12,12 @@ import hu.cubix.orderservice.patrik.repository.AddressRepository;
 import hu.cubix.orderservice.patrik.repository.OrderModelRepository;
 import hu.cubix.orderservice.patrik.repository.OrderedProductRepository;
 import hu.cubix.orderservice.patrik.repository.ProductWithInfoRepository;
+import hu.cubix.shipperservice.patrik.wsclient.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -77,8 +79,43 @@ public class OrderServiceImpl implements OrderService {
                     .concat(", or ")
                     .concat(Status.DECLINED.toString()));
         }
-
         order.setStatus(status);
+
+        if (status.equals(Status.CONFIRMED)) {
+            System.out.println("ShipmentId: " + callXmlWs(order));
+        }
+
         return orderRepository.save(order);
+    }
+
+    public Long callXmlWs(OrderModel order) {
+        Shipment shipment = new Shipment();
+        order.getProductWithInfos().forEach(info -> {
+            ShippableProduct shippableProduct = new ShippableProduct();
+            shippableProduct.setName(info.getProduct().getName());
+            shippableProduct.setCount(info.getCount());
+            shipment.getProducts().add(shippableProduct);
+        });
+
+        hu.cubix.shipperservice.patrik.wsclient.Address fromAddress = new hu.cubix.shipperservice.patrik.wsclient.Address();
+        fromAddress.setCountry("HU");
+        fromAddress.setZip("3300");
+        fromAddress.setCity("Eger");
+        fromAddress.setStreet("Test u 2");
+
+        hu.cubix.shipperservice.patrik.wsclient.Address toAddress = new hu.cubix.shipperservice.patrik.wsclient.Address();
+        Address orderAddress = order.getAddress();
+        toAddress.setCountry(orderAddress.getCountry());
+        toAddress.setZip(orderAddress.getZip());
+        toAddress.setCity(orderAddress.getCity());
+        toAddress.setStreet(orderAddress.getStreet());
+
+        shipment.setFromAddress(fromAddress);
+        shipment.setToAddress(toAddress);
+
+        ShipperXmlWs shipperXmlWsImplPort = new ShipperXmlWsImplService().getShipperXmlWsImplPort();
+        AddShipment addShipment = new AddShipment();
+        addShipment.setArg0(shipment);
+        return shipperXmlWsImplPort.addShipment(addShipment);
     }
 }
