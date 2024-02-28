@@ -50,16 +50,12 @@ public class SecurityConfig {
 //			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 //.and()
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/oauth2/**").permitAll()
-//                        .requestMatchers("/fbLoginSuccess").permitAll()
-//                        .requestMatchers("/api/login/**").permitAll()
-//                        .requestMatchers("/api/registration/**").permitAll()
-//                        .requestMatchers("/api/test").hasAnyAuthority("customer", "admin")
                         .anyRequest().permitAll()
                 )
-//                .oauth2Login(oAuth2Login -> oAuth2Login
-//                        .defaultSuccessUrl("/fbLoginSuccess", true)
-//                )
+                // http://localhost:8084/login
+                .oauth2Login(oAuth2Login -> oAuth2Login
+                        .defaultSuccessUrl("/fbLoginSuccess", true)
+                )
         ;
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

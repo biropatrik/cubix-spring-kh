@@ -4,7 +4,6 @@ import hu.cubix.userservice.patrik.dto.LoginDto;
 import hu.cubix.userservice.patrik.dto.RegistrationDto;
 import hu.cubix.userservice.patrik.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +22,5 @@ public class JwtLoginController {
     @PostMapping("/api/registration")
     public String registration(@RequestBody RegistrationDto registrationDto) {
         return userService.registerNewUser(registrationDto);
-    }
-
-    @GetMapping("/api/test")
-    public String test() {
-        return "nice";
     }
 }

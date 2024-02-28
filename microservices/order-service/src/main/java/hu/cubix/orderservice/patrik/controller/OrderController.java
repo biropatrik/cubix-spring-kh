@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class OrderController {
     }
 
     @GetMapping("/{username}")
+    @PreAuthorize("#username == authentication.name or hasAuthority('admin')")
     public ResponseEntity<List<OrderDto>> getOrdersByUsername(@PathVariable String username) {
         return ResponseEntity.ok(
                 orderMapper.ordersToDtos(
